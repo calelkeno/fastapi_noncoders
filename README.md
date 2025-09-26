@@ -96,12 +96,12 @@ if __name__ == "__main__":
 
 4.  To access the Swagger UI for your API:
 
-    - If your Codespaces URL is for example:
-      > https://jubilant-xylophone-jjgp646x9qpj3pw9w.github.dev/
+    - If your Codespaces URI is for example:
+      > **Codespaces URI** : https://jubilant-xylophone-jjgp646x9qpj3pw9w.github.dev/
 
     - Append **-8000.app** and **/docs** to the example Codespaces URL
-      above. The final URL will look like this:
-      > https://jubilant-xylophone-jjgp646x9qpj3pw9w`-8000.app`.github.dev`/docs`
+      above. The final URL will be the Swagger URI which look like below :
+      > Swagger URI : https://jubilant-xylophone-jjgp646x9qpj3pw9w`-8000.app`.github.dev`/docs`
 
 5.  Open the final URL using internet browser (ie:chrome) and the
     browser should display the Swagger UI like below sample :
