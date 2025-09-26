@@ -108,3 +108,14 @@ if __name__ == "__main__":
    - Append **`-8000.app`** and **`/docs`** to the above URI.  
      Final Swagger URI will be:  
      > **https://jubilant-xylophone-jjgp646x9qpj3pw9w-8000.app.github.dev/docs**
+
+## 5. Open the final URL in your browser (e.g., Chrome).  
+   The Swagger UI should look like the sample below:
+
+<img src="media/image1.png" alt="Swagger UI Screenshot" width="600">
+
+In the above Swagger UI screenshot, the **green badge "OAS 3.1"** means:
+
+1. OAS = OpenAPI Specification  
+2. 3.1 = the version of the OpenAPI Specification this API documentation is using  
+3. Swagger UI shows this badge to confirm the schema (openapi.json) complies with OpenAPI 3.1
