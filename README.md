@@ -100,7 +100,7 @@ if __name__ == "__main__":
 > **Note:** The `--reload` flag enables auto-reloading whenever you make changes to your code.
 
 
-## 4. Open a browser and access the Swagger UI for your API:
+## 4. Open a browser (e.g., Chrome) and access the Swagger UI for your API
 
    - Example Codespaces URI:  
      > **https://jubilant-xylophone-jjgp646x9qpj3pw9w.github.dev/**
@@ -109,10 +109,10 @@ if __name__ == "__main__":
      Final Swagger URI will be:  
      > **https://jubilant-xylophone-jjgp646x9qpj3pw9w-8000.app.github.dev/docs**
 
-## 5. Open the final URL in your browser (e.g., Chrome).  
+## 5. Open the final Swagger URI in your browser  
    The Swagger UI should look like the sample below:
 
-<img src="media/image1.png" alt="Swagger UI Screenshot" width="600">
+<img src="swagger_ui_screenshoot.png" alt="Swagger UI Screenshot" width="600">
 
 In the above Swagger UI screenshot, the **green badge "OAS 3.1"** means:
 
