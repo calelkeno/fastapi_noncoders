@@ -89,10 +89,10 @@ if __name__ == "__main__":
 
 3.  Start your application by running the command :
 ```bash
- **uvicorn main:app \--reload**
+ uvicorn main:app \--reload
 ```
-**Note** : The \--reload flag enables auto-reloading whenever you make
-changes to your code.
+!!! note
+    The `--reload` flag enables auto-reloading whenever you make changes to your code.
 
 4.  To access the Swagger UI for your API:
 
