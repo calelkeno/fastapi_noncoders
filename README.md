@@ -88,9 +88,9 @@ if __name__ == "__main__":
 | **pip install uvicorn** | Installs the ASGI server needed to run FastAPI |
 
 3.  Start your application by running the command :
-
-> **uvicorn main:app \--reload**
-
+```bash
+ **uvicorn main:app \--reload**
+```
 **Note** : The \--reload flag enables auto-reloading whenever you make
 changes to your code.
 
