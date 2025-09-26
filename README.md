@@ -82,13 +82,10 @@ if __name__ == "__main__":
 2.  Install the required dependencies by running these commands in your
     terminal:
 
-  -----------------------------------------------------------------------
-  Command                 Description
-  ----------------------- -----------------------------------------------
-  **pip install fastapi** Installs the FastAPI framework
-
-  **pip install uvicorn** Installs the ASGI server needed to run FastAPI.
-  -----------------------------------------------------------------------
+| Command              | Description                                      |
+|----------------------|--------------------------------------------------|
+| **pip install fastapi** | Installs the FastAPI framework                  |
+| **pip install uvicorn** | Installs the ASGI server needed to run FastAPI |
 
 3.  Start your application by running the command :
 
