@@ -91,8 +91,8 @@ if __name__ == "__main__":
 ```bash
  uvicorn main:app \--reload
 ```
-!!! note
-    The `--reload` flag enables auto-reloading whenever you make changes to your code.
+> **Note:** The `--reload` flag enables auto-reloading whenever you make changes to your code.
+
 
 4.  To access the Swagger UI for your API:
 
