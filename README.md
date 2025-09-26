@@ -2,13 +2,14 @@ Creating API and running the API using Github Codespaces
 
 1.  Create main.py file and write the code below :
 
+```python
 from fastapi import FastAPI, HTTPException
 
 from pydantic import BaseModel
 
 from typing import List, Optional
 
-\# Initialize FastAPI app
+# Initialize FastAPI app
 
 app = FastAPI(
 
@@ -21,13 +22,13 @@ DELETE methods.\",
 
 )
 
-\# In-memory storage for items (acting as a simple database)
+# In-memory storage for items (acting as a simple database)
 
 fake_db = \[\]
 
 item_id_counter = 0
 
-\# Pydantic model for item data (what the client sends for
+# Pydantic model for item data (what the client sends for
 creation/update)
 
 class ItemCreate(BaseModel):
@@ -36,7 +37,7 @@ class ItemCreate(BaseModel):
 
     description: Optional\[str\] = None
 
-\# Pydantic model for item data including ID (what the API returns)
+# Pydantic model for item data including ID (what the API returns)
 
 class Item(BaseModel):
 
@@ -46,11 +47,11 @@ class Item(BaseModel):
 
     description: Optional\[str\] = None
 
-\# \-\-- API Endpoints will be defined below \-\--
+# \-\-- API Endpoints will be defined below \-\--
 
-\# POST endpoint to create a new item
+# POST endpoint to create a new item
 
-\@app.post(\"/items/\", response_model=Item, status_code=201)
+@app.post(\"/items/\", response_model=Item, status_code=201)
 
 async def create_item(item_create: ItemCreate):
 
@@ -65,17 +66,17 @@ description=item_create.description)
 
     return new_item
 
-\# GET endpoint to retrieve all items
+# GET endpoint to retrieve all items
 
-\@app.get(\"/items/\", response_model=List\[Item\])
+@app.get(\"/items/\", response_model=List\[Item\])
 
 async def read_items(skip: int = 0, limit: int = 10):
 
     return fake_db\[skip : skip + limit\]
 
-\# GET endpoint to retrieve a specific item by ID
+# GET endpoint to retrieve a specific item by ID
 
-\@app.get(\"/items/{item_id}\", response_model=Item)
+@app.get(\"/items/{item_id}\", response_model=Item)
 
 async def read_item(item_id: int):
 
@@ -87,9 +88,9 @@ async def read_item(item_id: int):
 
     raise HTTPException(status_code=404, detail=\"Item not found\")
 
-\# PUT endpoint to update an existing item by ID
+# PUT endpoint to update an existing item by ID
 
-\@app.put(\"/items/{item_id}\", response_model=Item)
+@app.put(\"/items/{item_id}\", response_model=Item)
 
 async def update_item(item_id: int, item_update: ItemCreate):
 
@@ -106,9 +107,9 @@ description=item_update.description)
 
     raise HTTPException(status_code=404, detail=\"Item not found\")
 
-\# DELETE endpoint to delete an item by ID
+# DELETE endpoint to delete an item by ID
 
-\@app.delete(\"/items/{item_id}\", response_model=dict)
+@app.delete(\"/items/{item_id}\", response_model=dict)
 
 async def delete_item(item_id: int):
 
