@@ -1,7 +1,5 @@
 # Creating API and running the API using GitHub Codespaces
 
-
-
 ## 1. Create `main.py` and write the code below
 
 ```python
@@ -87,17 +85,26 @@ if __name__ == "__main__":
 
 ```
 
+## 2.  Install the required dependencies by running these commands in your terminal 
 
-##2.  Install the required dependencies by running these commands in your
-    terminal:
 
 | Command              | Description                                      |
 |----------------------|--------------------------------------------------|
 | **pip install fastapi** | Installs the FastAPI framework                  |
 | **pip install uvicorn** | Installs the ASGI server needed to run FastAPI |
 
-##3.  Start your application by running the command :
+## 3.  Start your application by running the command 
 ```bash
- uvicorn main:app \--reload
+ uvicorn main:app --reload
 ```
 > **Note:** The `--reload` flag enables auto-reloading whenever you make changes to your code.
+
+
+## 4. Open a browser and access the Swagger UI for your API:
+
+   - Example Codespaces URI:  
+     > **https://jubilant-xylophone-jjgp646x9qpj3pw9w.github.dev/**
+
+   - Append **`-8000.app`** and **`/docs`** to the above URI.  
+     Final Swagger URI will be:  
+     > **https://jubilant-xylophone-jjgp646x9qpj3pw9w-8000.app.github.dev/docs**
