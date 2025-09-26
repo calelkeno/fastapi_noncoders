@@ -1,6 +1,6 @@
 # Creating API and running the API using GitHub Codespaces
 
----
+
 
 ## 1. Create `main.py` and write the code below
 
