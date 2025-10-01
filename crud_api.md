@@ -27,19 +27,19 @@ app = FastAPI(
 from pydantic import BaseModel
 
 # Pydantic models
-class UserCreate(BaseModel):
+class User(BaseModel):
     name: str
     email: str
 
 @app.post("/users", tags=["User Management"])
-def create_user(user: UserCreate):
+def create_user(user: User):
     # Create a new user
     return {"message": "User created", "user_id": 123}
 
 ```
 Code Explaination :
 - Send some user data, for example: {"name": "John", "email": "john@email.com"} to the `/users` path is the URL where the API listens for requests.
-- The `user: UserCreate` part means the API expects the request body to match the User model (usually defined with Pydantic).
+- The `user: User` part means the API expects the request body to match the User model (usually defined with Pydantic).
 - Finally, it will return a JSON response with a confirmation message and a sample user_id
 
 ## 4. Create a GET method API endpoint in `crud_api.py` file and add the following code
@@ -73,6 +73,21 @@ def update_user(user_id: int, user: User):
 ```
 Code Explaination :
 - Update user information using the PUT method.
-- The input parameter `user_id` part means you must provide the ID of the user you want to update in the URL.
-- For now, it just returns a confirmation message.
+- The input parameter `user_id`part means you must provide the ID of the user you want to update in the URL.
+- For now, it just returns a confirmation message in JSON format.
+
+## 6. Create a DELETE method API endpoint in `crud_api.py` file and add the following code
+
+```python
+# Delete a user (DELETE)
+@app.delete("/users/{user_id}")
+def delete_user(user_id: int):
+    # Remove user from database
+    return {"message": "User deleted"}
+
+```
+Code Explaination :
+- Delete a user information using the DELETE method.
+- The input parameter `user_id`part means you must provide the ID of the user you want to delete in the URL.
+- For now, it just returns a confirmation message in JSON format.
 
