@@ -51,7 +51,7 @@ def create_user(user: User):
 ## 5. Open the final Swagger URI in your browser  
    The Swagger UI should look like the sample below:
 
-<img src="fisrtapi_ui_screenshoot.png" alt="Swagger UI Screenshot" width="600">
+<img src="fistapi_ui_screenshoot.png" alt="Swagger UI Screenshot" width="600">
 
 In the above Swagger UI screenshot, the **green badge "OAS 3.1"** means:
 
