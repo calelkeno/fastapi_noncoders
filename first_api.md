@@ -8,7 +8,7 @@ from fastapi import FastAPI
 # Initialize FastAPI app
 app = FastAPI(
     title="My first API",
-    description="API to manage user data with POST, GET, PUT, and DELETE methods.",
+    description="API to just to say hello.",
     version="0.1.0",
 )
 
