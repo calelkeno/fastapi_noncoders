@@ -1,6 +1,6 @@
-# Creating API and running the API using GitHub Codespaces
+# Creating first API and running the API using GitHub Codespaces
 
-## 1. Create `main.py` and write the code below
+## 1. Create `first_api.py` in GitHub Codespaces and write the code below
 
 ```python
 from fastapi import FastAPI
@@ -51,7 +51,7 @@ def create_user(user: User):
 ## 5. Open the final Swagger URI in your browser  
    The Swagger UI should look like the sample below:
 
-<img src="swagger_ui_screenshoot.png" alt="Swagger UI Screenshot" width="600">
+<img src="fisrtapi_ui_screenshoot.png" alt="Swagger UI Screenshot" width="600">
 
 In the above Swagger UI screenshot, the **green badge "OAS 3.1"** means:
 
