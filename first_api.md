@@ -28,7 +28,7 @@ def hello_fastapi():
 
 ## 3.  Start your application by running the command 
 ```bash
- uvicorn main:app --reload
+ uvicorn first_api:app --reload
 ```
 > **Note:** The `--reload` flag enables auto-reloading whenever you make changes to your code.
 
