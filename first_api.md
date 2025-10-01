@@ -4,7 +4,6 @@
 
 ```python
 from fastapi import FastAPI
-from pydantic import BaseModel
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -13,14 +12,9 @@ app = FastAPI(
     version="0.1.0",
 )
 
-class User(BaseModel):
-    name: str
-    age: int
-
-@app.post("/users", tags=["Users"])
-def create_user(user: User):
-    """Create a new user"""  # Optional one-line description
-    return {"id": 1, "name": user.name, "age": user.age}
+@app.get("/hello", tags=["Greeting"])
+def hello_fastapi():
+    return {"message": "Hello, FastAPI!"}
 
 ```
 
