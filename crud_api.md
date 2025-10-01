@@ -21,12 +21,24 @@ app = FastAPI(
 > **Note:** The `--reload` flag enables auto-reloading whenever you make changes to your code.
 
 
-## 4. Open a browser (e.g., Chrome) and access the Swagger UI for your API
+## 3. Create a POST method API endpoint in `crud_api.py` file and add the following code
 
-   - Example Codespaces URI:  
-     > **https://jubilant-xylophone-jjgp646x9qpj3pw9w.github.dev/**
+```python
+from pydantic import BaseModel
 
-   - Append **`-8000.app`** and **`/docs`** to the above URI.  
-     Final Swagger URI will be:  
-     > **https://jubilant-xylophone-jjgp646x9qpj3pw9w-8000.app.github.dev/docs**
+# Pydantic models
+class UserCreate(BaseModel):
+    name: str
+    email: str
+
+@app.post("/users", )
+def create_user(user: UserCreate):
+    # Create a new user
+    return {"message": "User created", "user_id": 123}
+
+```
+Here’s what the code will do:
+- Send some user data, for example: {"name": "John", "email": "john@email.com"} to the `/users` path is the URL where the API listens for requests.
+- The `user: UserCreate` part means the API expects the request body to match the User model (usually defined with Pydantic).
+- Finally, it will return a JSON response with a confirmation message and a sample user_id
 
