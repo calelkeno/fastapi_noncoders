@@ -46,12 +46,12 @@ Code Explaination :
 
 ```python
 # Get all users
-@app.get("/users")
+@app.get("/users", tags=["User Management"])
 def get_all_users():
     return [{"id": 1, "name": "John"}, {"id": 2, "name": "Jane"}]
 
 # Get specific user
-@app.get("/users/{user_id}")
+@app.get("/users/{user_id}", tags=["User Management"])
 def get_user(user_id: int):
     return {"id": user_id, "name": "John", "email": "john@email.com"}
 
@@ -60,4 +60,19 @@ Code Explaination :
 - There are two GET endpoints API.
 - The first endpoint will returns a list of users in JSON format.
 - The second endpoint will have input parameter 'user_id` from the URL and returns a JSON object with details for that user
+
+## 5. Create a PUT method API endpoint in `crud_api.py` file and add the following code
+
+```python
+# Update entire user (PUT)
+@app.put("/users/{user_id}", tags=["User Management"])
+def update_user(user_id: int, user: User):
+    # Replace all user data
+    return {"message": "User updated completely"}
+
+```
+Code Explaination :
+- Update user information using the PUT method.
+- The input parameter `user_id` part means you must provide the ID of the user you want to update in the URL.
+- For now, it just returns a confirmation message.
 
