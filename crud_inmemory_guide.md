@@ -1,6 +1,6 @@
-# Example CRUD API with In-Memory Store — Step-by-step Guide
+# Creating CRUD API with In-Memory Store 
 
-This guide shows how to build a simple CRUD API using **FastAPI** and an in-memory list to store data. It's beginner-friendly and follows the same structure as the `crud_api.md` template.
+This guide shows how to build a simple CRUD API using **FastAPI** and an in-memory list to store data.
 
 ---
 
