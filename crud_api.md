@@ -1,6 +1,6 @@
 # Creating CRUD API to manage user data
 
-This guide shows how to build a simple CRUD API using **FastAPI** to manage user data with POST, GET, PUT, and DELETE methods.
+This guide shows how to build a simple CRUD operations using **FastAPI** to manage user data with POST, GET, PUT, and DELETE methods.
 
 ---
 ## 1. Create `crud_api.py` in GitHub Codespaces and write the code below
