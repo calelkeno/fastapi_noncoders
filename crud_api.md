@@ -39,7 +39,7 @@ def create_user(user: User):
 ```
 Code Explanation :
 - Send some user data, for example: {"name": "John", "email": "john@email.com"} to the `/users` path is the URL where the API listens for requests.
-- The `user: User` part means the API expects the request body to match the User model (usually defined with Pydantic).
+- `def create_user(user: User):` — the `user` parameter tells FastAPI to expect a JSON body that matches the `User` Pydantic model. FastAPI automatically validates and converts the JSON into a `User` object.
 - Finally, it will return a JSON response with a confirmation message and a sample user_id
 
 ## 4. Create a GET method API endpoint in `crud_api.py` file and add the following code
@@ -57,7 +57,9 @@ def get_user(user_id: int):
 
 ```
 Code Explanation :
-- There are two GET endpoints API.
+- There are two GET endpoints here:
+  - `GET /users` returns a JSON **list** of user objects. Use this to fetch all users at once.
+  - `GET /users/{user_id}` accepts a **path parameter** (`user_id`) and returns the matching user object. For example, calling `/users/1` passes `1` into the function as `user_id`.
 - The first endpoint will returns a list of users in JSON format.
 - The second endpoint will have input parameter 'user_id` from the URL and returns a JSON object with details for that user
 
