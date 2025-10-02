@@ -1,93 +1,143 @@
-# Creating API to manage user data with POST, GET, PUT, and DELETE methods
+# Creating CRUD API with In-Memory Store 
 
-## 1. Create `crud_api.py` in GitHub Codespaces and write the code below
+This guide shows how to build a simple blog post API with CRUD operation using **FastAPI** and an in-memory list to store data.
+
+---
+
+## 1. Create `crud_inmemory_api.py` in GitHub Codespaces and write the code below
 
 ```python
 from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="My CRUD API",
-    description="API to manage user data with POST, GET, PUT, and DELETE methods.",
+    title="Example CRUD API (In-Memory)",
+    description="A simple blog post showing CRUD operations using an in-memory list.",
     version="0.1.0",
 )
 
+# Data model
+class Post(BaseModel):
+    title: str
+    content: str
+    author: str
+
+class PostUpdate(BaseModel):
+    title: str = None
+    content: str = None
+
+# Fake database
+posts_db = []
+next_id = 1
 ```
 
-## 2.  Start your application by running the command 
+---
+
+## 2. Start your application by running the command
+
 ```bash
- uvicorn crud_api:app --reload
+uvicorn crud_inmemory_api:app --reload
 ```
-> **Note:** The `--reload` flag enables auto-reloading whenever you make changes to your code.
 
+> **Note:** The `--reload` flag enables auto-reloading whenever you make changes to your code. Open `http://127.0.0.1:8000/docs` to view the interactive Swagger UI.
 
-## 3. Create a POST method API endpoint in `crud_api.py` file and add the following code
+---
+
+## 3. Create a POST method API endpoint in `crud_inmemory_api.py` and add the following code
 
 ```python
-from pydantic import BaseModel
-
-# Pydantic models
-class User(BaseModel):
-    name: str
-    email: str
-
-@app.post("/users", tags=["User Management"])
-def create_user(user: User):
-    # Create a new user
-    return {"message": "User created", "user_id": 123}
-
+# CREATE - POST method
+@app.post("/posts", tags=["Blog Post"])
+def create_post(post: Post):
+    global next_id
+    new_post = {
+        "id": next_id,
+        "title": post.title,
+        "content": post.content,
+        "author": post.author
+    }
+    posts_db.append(new_post)
+    next_id += 1
+    return {"message": "Post created", "post": new_post}
 ```
-Code Explanation :
-- Send some user data, for example: {"name": "John", "email": "john@email.com"} to the `/users` path is the URL where the API listens for requests.
-- The `user: User` part means the API expects the request body to match the User model (usually defined with Pydantic).
-- Finally, it will return a JSON response with a confirmation message and a sample user_id
 
-## 4. Create a GET method API endpoint in `crud_api.py` file and add the following code
+**Code Explanation:**
+- This endpoint listens for **POST** requests at `/posts`.
+- The request body must match the `Post` model (title, content, author).
+- The code appends the new post to the `posts` list and returns a confirmation with the stored item.
+
+---
+
+## 4. Create GET method API endpoints in `crud_inmemory_api.py` and add the following code
 
 ```python
-# Get all users
-@app.get("/users", tags=["User Management"])
-def get_all_users():
-    return [{"id": 1, "name": "John"}, {"id": 2, "name": "Jane"}]
+# READ - GET methods
+@app.get("/posts", tags=["Blog Post"])
+def get_all_posts():
+    return {"posts": posts_db}
 
-# Get specific user
-@app.get("/users/{user_id}", tags=["User Management"])
-def get_user(user_id: int):
-    return {"id": user_id, "name": "John", "email": "john@email.com"}
-
+@app.get("/posts/{post_id}", tags=["Blog Post"])
+def get_post(post_id: int):
+    for post in posts_db:
+        if post["id"] == post_id:
+            return {"post": post}
+    return {"error": "Post not found"}
 ```
-Code Explanation :
-- There are two GET endpoints API.
-- The first endpoint will returns a list of users in JSON format.
-- The second endpoint will have input parameter 'user_id` from the URL and returns a JSON object with details for that user
 
-## 5. Create a PUT method API endpoint in `crud_api.py` file and add the following code
+**Code Explanation:**
+- There are two GET endpoints here:
+    - `GET /posts` returns the entire list of posts as JSON.
+    - `GET /posts/{post_id}` takes an integer path parameter `post_id`, searches the list, and returns the matching post or an error message.
+
+---
+
+## 5. Create a PUT method API endpoint in `crud_inmemory_api.py` and add the following code
 
 ```python
-# Update entire user (PUT)
-@app.put("/users/{user_id}", tags=["User Management"])
-def update_user(user_id: int, user: User):
-    # Replace all user data
-    return {"message": "User updated completely"}
-
+# UPDATE - PUT method
+@app.put("/posts/{post_id}")
+def update_post(post_id: int, updated_post: Post):
+    for i, post in enumerate(posts_db):
+        if post["id"] == post_id:
+            posts_db[i] = {
+                "id": post_id,
+                "title": updated_post.title,
+                "content": updated_post.content,
+                "author": updated_post.author
+            }
+            return {"message": "Post updated", "post": posts_db[i]}
+    return {"error": "Post not found"}
 ```
-Code Explanation :
-- Update user information using the PUT method.
-- The input parameter `user_id`part means you must provide the ID of the user you want to update in the URL.
-- For now, it just returns a confirmation message in JSON format.
 
-## 6. Create a DELETE method API endpoint in `crud_api.py` file and add the following code
+**Code Explanation:**
+- `PUT /posts/{post_id}` replaces the whole post with the data provided in the request body.
+- If the post exists, it is replaced and a confirmation is returned. Otherwise, an error is returned.
+
+---
+
+## 6. Create a DELETE method API endpoint in `crud_inmemory_api.py` and add the following code
 
 ```python
-# Delete a user (DELETE)
-@app.delete("/users/{user_id}")
-def delete_user(user_id: int):
-    # Remove user from database
-    return {"message": "User deleted"}
-
+# DELETE - DELETE method
+@app.delete("/posts/{post_id}")
+def delete_post(post_id: int):
+    for i, post in enumerate(posts_db):
+        if post["id"] == post_id:
+            deleted_post = posts_db.pop(i)
+            return {"message": "Post deleted", "post": deleted_post}
+    return {"error": "Post not found"}
 ```
-Code Explanation :
-- Delete a user information using the DELETE method.
-- The input parameter `user_id`part means you must provide the ID of the user you want to delete in the URL.
-- For now, it just returns a confirmation message in JSON format.
 
+**Code Explanation:**
+- `DELETE /posts/{post_id}` removes the post with the provided ID from the in-memory list.
+- Returns the deleted item on success or an error message if not found.
+
+---
+
+> **Note:** This in-memory approach is great for learning CRUD operation to manage data, but data will be lost when the API restarts. For production, connect to a real database (SQLite, PostgreSQL, etc.)
+
+---
+
+Happy coding! 🚀
