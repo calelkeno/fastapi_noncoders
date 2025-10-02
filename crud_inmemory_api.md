@@ -13,7 +13,7 @@ from typing import List
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Example CRUD API (In-Memory)",
+    title="Blog Post CRUD API (In-Memory)",
     description="A simple blog post showing CRUD operations using an in-memory list.",
     version="0.1.0",
 )
@@ -97,7 +97,7 @@ def get_post(post_id: int):
 
 ```python
 # UPDATE - PUT method
-@app.put("/posts/{post_id}")
+@app.put("/posts/{post_id}", tags=["Blog Post"])
 def update_post(post_id: int, updated_post: Post):
     for i, post in enumerate(posts_db):
         if post["id"] == post_id:
@@ -121,7 +121,7 @@ def update_post(post_id: int, updated_post: Post):
 
 ```python
 # DELETE - DELETE method
-@app.delete("/posts/{post_id}")
+@app.delete("/posts/{post_id}", tags=["Blog Post"])
 def delete_post(post_id: int):
     for i, post in enumerate(posts_db):
         if post["id"] == post_id:
