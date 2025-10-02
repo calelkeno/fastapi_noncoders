@@ -37,7 +37,7 @@ def create_user(user: User):
     return {"message": "User created", "user_id": 123}
 
 ```
-Code Explaination :
+Code Explanation :
 - Send some user data, for example: {"name": "John", "email": "john@email.com"} to the `/users` path is the URL where the API listens for requests.
 - The `user: User` part means the API expects the request body to match the User model (usually defined with Pydantic).
 - Finally, it will return a JSON response with a confirmation message and a sample user_id
@@ -56,7 +56,7 @@ def get_user(user_id: int):
     return {"id": user_id, "name": "John", "email": "john@email.com"}
 
 ```
-Code Explaination :
+Code Explanation :
 - There are two GET endpoints API.
 - The first endpoint will returns a list of users in JSON format.
 - The second endpoint will have input parameter 'user_id` from the URL and returns a JSON object with details for that user
@@ -71,7 +71,7 @@ def update_user(user_id: int, user: User):
     return {"message": "User updated completely"}
 
 ```
-Code Explaination :
+Code Explanation :
 - Update user information using the PUT method.
 - The input parameter `user_id`part means you must provide the ID of the user you want to update in the URL.
 - For now, it just returns a confirmation message in JSON format.
@@ -86,7 +86,7 @@ def delete_user(user_id: int):
     return {"message": "User deleted"}
 
 ```
-Code Explaination :
+Code Explanation :
 - Delete a user information using the DELETE method.
 - The input parameter `user_id`part means you must provide the ID of the user you want to delete in the URL.
 - For now, it just returns a confirmation message in JSON format.
