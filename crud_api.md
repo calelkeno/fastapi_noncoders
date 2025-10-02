@@ -96,3 +96,6 @@ Code Explanation :
 - The input parameter `user_id`part means you must provide the ID of the user you want to delete in the URL.
 - For now, it just returns a confirmation message in JSON format.
 
+---
+
+Happy coding! 🚀
