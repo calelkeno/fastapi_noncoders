@@ -13,7 +13,7 @@ from typing import List
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Blog Post CRUD API (In-Memory)",
+    title="Blog Post API (In-Memory)",
     description="A simple blog post showing CRUD operations using an in-memory list.",
     version="0.1.0",
 )
