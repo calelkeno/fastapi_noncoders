@@ -35,7 +35,7 @@ class User(BaseModel):
     email: str
 
 @app.post("/users", tags=["User Management"])
-def create_user(user: User):
+async def create_user(user: User):
     # Create a new user
     return {"message": "User created", "user_id": 123}
 
@@ -50,12 +50,12 @@ Code Explanation :
 ```python
 # Get all users
 @app.get("/users", tags=["User Management"])
-def get_all_users():
+async def get_all_users():
     return [{"id": 1, "name": "John"}, {"id": 2, "name": "Jane"}]
 
 # Get specific user
 @app.get("/users/{user_id}", tags=["User Management"])
-def get_user(user_id: int):
+async def get_user(user_id: int):
     return {"id": user_id, "name": "John", "email": "john@email.com"}
 
 ```
@@ -71,7 +71,7 @@ Code Explanation :
 ```python
 # Update entire user (PUT)
 @app.put("/users/{user_id}", tags=["User Management"])
-def update_user(user_id: int, user: User):
+async def update_user(user_id: int, user: User):
     # Replace all user data
     return {"message": "User updated completely"}
 
@@ -86,7 +86,7 @@ Code Explanation :
 ```python
 # Delete a user (DELETE)
 @app.delete("/users/{user_id}")
-def delete_user(user_id: int):
+async def delete_user(user_id: int):
     # Remove user from database
     return {"message": "User deleted"}
 
