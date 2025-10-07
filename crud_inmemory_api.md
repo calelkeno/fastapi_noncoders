@@ -104,15 +104,16 @@ def get_user(user_id: int):
 ```python
 # UPDATE - PUT method (complete update)
 @app.put("/users/{user_id}", tags=["Update"])
-def update_user(user_id: int, updated_user: User):
+def update_user(user_id: int, user_updates: UserUpdate):
     for i, user in enumerate(users_db):
         if user["id"] == user_id:
-            users_db[i] = {
-                "id": user_id,
-                "name": updated_user.name,
-                "email": updated_user.email,
-                "age": updated_user.age
-            }
+            # Only update fields that are provided
+            if user_updates.name is not None:
+                users_db[i]["name"] = user_updates.name
+            if user_updates.email is not None:
+                users_db[i]["email"] = user_updates.email
+            if user_updates.age is not None:
+                users_db[i]["age"] = user_updates.age
             return {"message": "User updated", "user": users_db[i]}
     return {"error": "User not found"}
 ```
