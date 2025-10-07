@@ -95,7 +95,7 @@ def get_user(user_id: int):
 **Code Explanation:**
 - There are two GET endpoints here:
     - `GET /users` returns the entire list of users information as JSON.
-    - `GET /users/{user_id}` takes an integer path parameter `user_id`, searches the list, and returns the matching user9 or an error message.
+    - `GET /users/{user_id}` takes an integer path parameter `user_id`, searches the list, and returns the matching user or an error message.
 
 ---
 
