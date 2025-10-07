@@ -18,6 +18,7 @@ Base on User Management API learned, build a simple student management API with 
 
 Happy coding! 🚀
 
-Turns natural language prompts into code
+
+
 
 
