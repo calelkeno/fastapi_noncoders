@@ -55,7 +55,7 @@ uvicorn crud_inmemory_api:app --reload
 
 ```python
 # CREATE - POST method
-@app.post("/users")
+@app.post("/users", tags=["Create"])
 def create_user(user: User):
     global next_id
     new_user = {
@@ -80,11 +80,11 @@ def create_user(user: User):
 
 ```python
 # READ - GET methods
-@app.get("/users")
+@app.get("/users", tags=["Read"])
 def get_all_users():
     return {"users": users_db}
 
-@app.get("/users/{user_id}")
+@app.get("/users/{user_id}", tags=["Read"])
 def get_user(user_id: int):
     for user in users_db:
         if user["id"] == user_id:
@@ -103,7 +103,7 @@ def get_user(user_id: int):
 
 ```python
 # UPDATE - PUT method (complete update)
-@app.put("/users/{user_id}")
+@app.put("/users/{user_id}", tags=["Update"])
 def update_user(user_id: int, updated_user: User):
     for i, user in enumerate(users_db):
         if user["id"] == user_id:
@@ -127,7 +127,7 @@ def update_user(user_id: int, updated_user: User):
 
 ```python
 # DELETE - DELETE method
-@app.delete("/users/{user_id}")
+@app.delete("/users/{user_id}", tags=["Delete"])
 def delete_user(user_id: int):
     for i, user in enumerate(users_db):
         if user["id"] == user_id:
