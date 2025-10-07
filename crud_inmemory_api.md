@@ -56,7 +56,7 @@ uvicorn crud_inmemory_api:app --reload
 ```python
 # CREATE - POST method
 @app.post("/users", tags=["Create"])
-def create_user(user: User):
+async def create_user(user: User):
     global next_id
     new_user = {
         "id": next_id,
@@ -81,11 +81,11 @@ def create_user(user: User):
 ```python
 # READ - GET methods
 @app.get("/users", tags=["Read"])
-def get_all_users():
+async def get_all_users():
     return {"users": users_db}
 
 @app.get("/users/{user_id}", tags=["Read"])
-def get_user(user_id: int):
+async def get_user(user_id: int):
     for user in users_db:
         if user["id"] == user_id:
             return {"user": user}
@@ -104,7 +104,7 @@ def get_user(user_id: int):
 ```python
 # UPDATE - PUT method (complete update)
 @app.put("/users/{user_id}", tags=["Update"])
-def update_user(user_id: int, user_updates: UserUpdate):
+async def update_user(user_id: int, user_updates: UserUpdate):
     for i, user in enumerate(users_db):
         if user["id"] == user_id:
             # Only update fields that are provided
@@ -129,7 +129,7 @@ def update_user(user_id: int, user_updates: UserUpdate):
 ```python
 # DELETE - DELETE method
 @app.delete("/users/{user_id}", tags=["Delete"])
-def delete_user(user_id: int):
+async def delete_user(user_id: int):
     for i, user in enumerate(users_db):
         if user["id"] == user_id:
             deleted_user = users_db.pop(i)
