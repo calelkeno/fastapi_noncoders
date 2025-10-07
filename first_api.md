@@ -17,6 +17,10 @@ def hello_fastapi():
     return {"message": "Hello, FastAPI!"}
 
 ```
+**Code Explanation:**
+- This endpoint listens for **POST** requests at `/items`.
+- The request body must match the `Item` model (id, name, optional description).
+- The code appends the new item to the `items` list and returns a confirmation with the stored item.
 
 ## 2.  Install the required dependencies by running these commands in your terminal 
 
