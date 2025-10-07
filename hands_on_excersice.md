@@ -6,7 +6,7 @@ Base on User Management API learned, build a simple student management API with 
 
 ## Topic : `Develop an API to Manage Student Records`
 **The API should include :**
-- Handling Student data (name, age, grade).
+- Handling Student data (name, age, grade) into an in-memory list.
 - Endpoints should include :
 	- GET /students (returns the entire list of users information as JSON.)
 	- GET /students/{id} (takes an integer path parameter `id`, searches the list, and returns the matching user) 
@@ -19,3 +19,4 @@ Base on User Management API learned, build a simple student management API with 
 Happy coding! 🚀
 
 Turns natural language prompts into code
+
