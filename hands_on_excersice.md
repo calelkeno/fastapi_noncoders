@@ -1,6 +1,6 @@
 # Hands-on Excersice : Build a Student Management API using FastAPI (with in-memory storage)
 
-Base on User Management API learned previously, build a simple student management API with CRUD operation using **FastAPI** and store the student data into an in-memory list.
+Base on User Management API learned, build a simple student management API with CRUD operation using **FastAPI** and store the student data into an in-memory list.
 
 ---
 
@@ -17,4 +17,5 @@ Base on User Management API learned previously, build a simple student managemen
 ---
 
 Happy coding! 🚀
+
 Turns natural language prompts into code
