@@ -23,7 +23,7 @@ def hello_fastapi():
     - A name: "My first API"
     - A description: "API to just to say hello"
     - A version number: "0.1.0" (like version 1).
-- The `GET /hello` returns a greeting message as JSON which is : {"message": "Hello, FastAPI!"}.
+- The `GET /hello` returns a greeting message as JSON which is : ```json{"message": "Hello, FastAPI!"}```.
 
 ## 2.  Install the required dependencies by running these commands in your terminal 
 
