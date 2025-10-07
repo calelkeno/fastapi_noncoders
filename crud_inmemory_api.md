@@ -35,8 +35,8 @@ next_id = 1
 ```
 **Code Explanation:**
 - The `app = FastAPI` is the API foundation.
-- The `class User(BaseModel)` is the template for user data to create a new user.
-- The `class UserUpdate(BaseModel)` is the template for partial updates to specify what you want to change.
+- The `class User` is the template for user data to create a new user.
+- The `class UserUpdate` is the template for partial updates to specify what you want to change. `Optional` simple means the field can be empty or have a value"
 - The `users_db = []` is simply a list to store users information.
 - The `next_id = 1` is an ID counter to ensures each user gets unique ID.
 ---
