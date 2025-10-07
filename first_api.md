@@ -18,9 +18,12 @@ def hello_fastapi():
 
 ```
 **Code Explanation:**
-- This endpoint listens for **POST** requests at `/items`.
-- The request body must match the `Item` model (id, name, optional description).
-- The code appends the new item to the `items` list and returns a confirmation with the stored item.
+- The `from fastapi import FastAPI` means like grabbing a toolbox called "FastAPI" that has everything we need to build an API.
+- The `app = FastAPI` creates the API and gives it:
+    - A name: "My first API"
+    - A description: "API to just to say hello"
+    - A version number: "0.1.0" (like version 1).
+- The `GET /hello` returns a greeting message as JSON which is : {"message": "Hello, FastAPI!"}.
 
 ## 2.  Install the required dependencies by running these commands in your terminal 
 
