@@ -1,6 +1,6 @@
 # Creating CRUD API with In-Memory Store 
 
-This guide shows how to build a simple blog post API with CRUD operation using **FastAPI** and an in-memory list to store data.
+This guide shows how to build a simple API to manage user data with CRUD operation using **FastAPI** and an in-memory list to store data.
 
 ---
 
@@ -9,30 +9,36 @@ This guide shows how to build a simple blog post API with CRUD operation using *
 ```python
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Blog Post API (In-Memory)",
-    description="A simple blog post showing CRUD operations using an in-memory list.",
+    title="User Management API (In-Memory)",
+    description="A simple API to manage user data  CRUD operations using an in-memory list.",
     version="0.1.0",
 )
 
 # Data model
-class Post(BaseModel):
-    title: str
-    content: str
-    author: str
+class User(BaseModel):
+    name: str
+    email: str
+    age: int
 
-class PostUpdate(BaseModel):
-    title: str = None
-    content: str = None
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    email: Optional[str] = None
+    age: Optional[int] = None
 
 # Fake database
-posts_db = []
+users_db = []
 next_id = 1
 ```
-
+**Code Explanation:**
+- The `app = FastAPI` is the API foundation.
+- The `class User(BaseModel)` is the template for user data to create a new user.
+- The `class UserUpdate(BaseModel)` is the template for partial updates to specify what you want to change.
+- The `users_db = []` is simply a list to store users information.
+- The `next_id = 1` is an ID counter to ensures each user gets unique ID.
 ---
 
 ## 2. Start your application by running the command
@@ -49,24 +55,24 @@ uvicorn crud_inmemory_api:app --reload
 
 ```python
 # CREATE - POST method
-@app.post("/posts", tags=["Blog Post"])
-def create_post(post: Post):
+@app.post("/users")
+def create_user(user: User):
     global next_id
-    new_post = {
+    new_user = {
         "id": next_id,
-        "title": post.title,
-        "content": post.content,
-        "author": post.author
+        "name": user.name,
+        "email": user.email,
+        "age": user.age
     }
-    posts_db.append(new_post)
+    users_db.append(new_user)
     next_id += 1
-    return {"message": "Post created", "post": new_post}
+    return {"message": "User created", "user": new_user}
 ```
 
 **Code Explanation:**
-- This endpoint listens for **POST** requests at `/posts`.
-- The request body must match the `Post` model (title, content, author).
-- The code appends the new post to the `posts` list and returns a confirmation with the stored item.
+- This endpoint listens for **POST** requests at `/users`.
+- The request body must match the `User` model (name, email, age).
+- The code appends the new user to the `users_db` list and returns a confirmation with the stored information.
 
 ---
 
@@ -74,46 +80,46 @@ def create_post(post: Post):
 
 ```python
 # READ - GET methods
-@app.get("/posts", tags=["Blog Post"])
-def get_all_posts():
-    return {"posts": posts_db}
+@app.get("/users")
+def get_all_users():
+    return {"users": users_db}
 
-@app.get("/posts/{post_id}", tags=["Blog Post"])
-def get_post(post_id: int):
-    for post in posts_db:
-        if post["id"] == post_id:
-            return {"post": post}
-    return {"error": "Post not found"}
+@app.get("/users/{user_id}")
+def get_user(user_id: int):
+    for user in users_db:
+        if user["id"] == user_id:
+            return {"user": user}
+    return {"error": "User not found"}
 ```
 
 **Code Explanation:**
 - There are two GET endpoints here:
-    - `GET /posts` returns the entire list of posts as JSON.
-    - `GET /posts/{post_id}` takes an integer path parameter `post_id`, searches the list, and returns the matching post or an error message.
+    - `GET /users` returns the entire list of users information as JSON.
+    - `GET /users/{user_id}` takes an integer path parameter `user_id`, searches the list, and returns the matching user9 or an error message.
 
 ---
 
 ## 5. Create a PUT method API endpoint in `crud_inmemory_api.py` and add the following code
 
 ```python
-# UPDATE - PUT method
-@app.put("/posts/{post_id}", tags=["Blog Post"])
-def update_post(post_id: int, updated_post: Post):
-    for i, post in enumerate(posts_db):
-        if post["id"] == post_id:
-            posts_db[i] = {
-                "id": post_id,
-                "title": updated_post.title,
-                "content": updated_post.content,
-                "author": updated_post.author
+# UPDATE - PUT method (complete update)
+@app.put("/users/{user_id}")
+def update_user(user_id: int, updated_user: User):
+    for i, user in enumerate(users_db):
+        if user["id"] == user_id:
+            users_db[i] = {
+                "id": user_id,
+                "name": updated_user.name,
+                "email": updated_user.email,
+                "age": updated_user.age
             }
-            return {"message": "Post updated", "post": posts_db[i]}
-    return {"error": "Post not found"}
+            return {"message": "User updated", "user": users_db[i]}
+    return {"error": "User not found"}
 ```
 
 **Code Explanation:**
-- `PUT /posts/{post_id}` replaces the whole post with the data provided in the request body.
-- If the post exists, it is replaced and a confirmation is returned. Otherwise, an error is returned.
+- `PUT /users/{user_id}` replaces partially user data with the data provided in the request body.
+- If the user exists, it is replaced and a confirmation is returned. Otherwise, an error is returned.
 
 ---
 
@@ -121,17 +127,17 @@ def update_post(post_id: int, updated_post: Post):
 
 ```python
 # DELETE - DELETE method
-@app.delete("/posts/{post_id}", tags=["Blog Post"])
-def delete_post(post_id: int):
-    for i, post in enumerate(posts_db):
-        if post["id"] == post_id:
-            deleted_post = posts_db.pop(i)
-            return {"message": "Post deleted", "post": deleted_post}
-    return {"error": "Post not found"}
+@app.delete("/users/{user_id}")
+def delete_user(user_id: int):
+    for i, user in enumerate(users_db):
+        if user["id"] == user_id:
+            deleted_user = users_db.pop(i)
+            return {"message": "User deleted", "user": deleted_user}
+    return {"error": "User not found"}
 ```
 
 **Code Explanation:**
-- `DELETE /posts/{post_id}` removes the post with the provided ID from the in-memory list.
+- `DELETE /users/{user_id}` removes the user with the provided ID from the in-memory list.
 - Returns the deleted item on success or an error message if not found.
 
 ---
