@@ -47,7 +47,7 @@ next_id = 1
 uvicorn crud_inmemory_api:app --reload
 ```
 
-> **Note:** The `--reload` flag enables auto-reloading whenever you make changes to your code. Open `http://127.0.0.1:8000/docs` to view the interactive Swagger UI.
+> **Note:** The `--reload` flag enables auto-reloading whenever you make changes to your code. 
 
 ---
 
