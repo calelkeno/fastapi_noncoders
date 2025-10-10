@@ -85,7 +85,7 @@ Code Explanation :
 
 ```python
 # Delete a user (DELETE)
-@app.delete("/users/{user_id}")
+@app.delete("/users/{user_id}", tags=["User Management"])
 async def delete_user(user_id: int):
     # Remove user from database
     return {"message": "User deleted"}
